@@ -1,0 +1,155 @@
+#!/bin/bash
+#
+# Project:      pmph - Pamphlet
+# Repository:   https://github.com/cvdg/pmph/
+# Date:         2017-06-03
+#
+# Author:       Cees van de Griend <c.vande.griend@gmail.com>
+# Copyright:    (c) 2017 C.A. van de Griend
+#
+# Description:  MQTT client for system status messages
+#
+
+
+if [ ${EUID} -ne 0 ] ; then
+    echo "You're not root"
+    exit 1
+fi
+
+
+          PMPH_PID="${BASHPID}"
+       PMPH_DATDIR="/var/opt/pmph/dat"
+       PMPH_LOGDIR="/var/opt/pmph/log"
+       PMPH_RUNDIR="/var/opt/pmph/run"
+  PMPH_SYSTEM_UUID=""
+ PMPH_SESSION_UUID=""
+
+
+PMPH_LOCKFILE="${PMPH_RUNDIR}/pmph.lock"
+
+
+
+
+if [ ! -d ${PMPH_DATDIR} ] ; then
+    /bin/mkdir -p ${PMPH_DATDIR}
+fi
+
+if [ ! -d ${PMPH_LOGDIR} ] ; then
+    /bin/mkdir -p ${PMPH_LOGDIR}
+fi
+
+if [ ! -d ${PMPH_RUNDIR} ] ; then
+    /bin/mkdir -p ${PMPH_RUNDIR}
+fi
+
+
+
+function pmph_log {
+    DATE=$(/bin/date '+%Y%m%d')
+    DATETIME=$(/bin/date '+%Y-%m-%d %H:%M:%S')
+
+    echo "${DATETIME} pmph[${PMPH_PID}] $*" >> ${PMPH_LOGDIR}/pmph-${DATE}.log
+}
+
+
+
+function pmph_unlock {
+    pmph_log "unlock"
+
+    /bin/rm -f ${PMPH_LOCKFILE}
+}
+
+
+
+function pmph_lock {
+    pmph_log "lock"
+
+    if [ -f ${PMPH_LOCKFILE} ] ; then
+        pmph_log "Error: lockfile ${PMPH_LOCKFILE} exists"
+        exit 1
+    fi
+
+    echo ${PMPH_PID} > ${PMPH_LOCKFILE}
+}
+
+
+
+
+function pmph_init {
+    pmph_log "init $*"
+
+    if [ -f ${PMPH_RUNDIR}/system.uuid ] ; then
+        PMPH_SYSTEM_UUID=$(/bin/cat ${PMPH_RUNDIR}/system.uuid)
+    else
+        PMPH_SYSTEM_UUID=$(/usr/bin/uuidgen)
+        echo ${PMPH_SYSTEM_UUID} > ${PMPH_RUNDIR}/system.uuid
+    fi
+}
+
+
+
+function pmph_start {
+    pmph_log "start $*"
+
+    PMPH_SESSION_UUID=$(/usr/bin/uuidgen)
+    echo ${PMPH_SESSION_UUID} > ${PMPH_RUNDIR}/session.uuid
+
+    if [ -x /usr/bin/mosquitto_pub ] ; then
+        /usr/bin/mosquitto_pub -h 'rpia0009725' -t 'system/status' -m "${PMPH_SYSTEM_UUID} start ${PMPH_SESSION_UUID}"
+        /usr/bin/mosquitto_pub -h 'rpia0009725' -t 'system/status' -m "${PMPH_SYSTEM_UUID} hostname $(/bin/hostname -f)"
+    fi
+}
+
+
+
+
+function pmph_stop {
+    pmph_log "stop $*"
+
+    PMPH_SESSION_UUID=$(/bin/cat ${PMPH_RUNDIR}/session.uuid)
+
+    if [ -x /usr/bin/mosquitto_pub ] ; then
+        /usr/bin/mosquitto_pub -h 'rpia0009725' -t 'system/status' -m "${PMPH_SYSTEM_UUID} stop ${PMPH_SESSION_UUID}"
+    fi
+}
+
+
+
+function pmph_maintenance {
+    pmph_log "maintenance"
+
+    /usr/bin/find /var/opt/pmph/log -type f -ctime +1 -name '*.log' -exec /bin/gzip {} \;
+}
+
+
+
+#
+# Main
+#
+pmph_log "start pmph"
+pmph_lock
+
+trap pmph_unlock EXIT
+
+pmph_init
+
+
+case $1 in
+    start)
+        pmph_start
+        ;;
+    stop)
+        pmph_stop
+        ;;
+    *)
+        echo "Usage: $0 [start|stop]"
+        exit 1
+        ;;
+esac
+
+
+
+pmph_maintenance
+pmph_log "finish"
+
+exit 0
