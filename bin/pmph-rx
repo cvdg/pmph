@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if [ -x /usr/bin/mosquitto_pub ] ; then
+    /usr/bin/mosquitto_sub -h 'rpia0009725' -t 'system/status'
+fi
+
