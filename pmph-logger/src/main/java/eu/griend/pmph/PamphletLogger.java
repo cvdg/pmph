@@ -23,8 +23,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
-import eu.griend.pmph.service.PamphletService;
+import eu.griend.pmph.service.LoggerService;
 
 
 /**
@@ -33,16 +34,16 @@ import eu.griend.pmph.service.PamphletService;
  *
  */
 @SpringBootApplication
-public class PamphletClient {
-	private final static Logger LOGGER = LoggerFactory.getLogger(PamphletClient.class);
+public class PamphletLogger {
+	private final static Logger LOGGER = LoggerFactory.getLogger(PamphletLogger.class);
 	
 	@Autowired
-	PamphletService startService = null;
+	LoggerService startService;
 	
 	//
 	// Default constructor
 	//
-	public PamphletClient() {
+	public PamphletLogger() {
 		super();
 	}
 	
@@ -51,7 +52,7 @@ public class PamphletClient {
 	//
 	public static void main(String[] args) {
 		try {
-			SpringApplication.run(PamphletClient.class, args);
+			SpringApplication.run(PamphletLogger.class, args);
 		} catch (Exception e) {
 			System.err.println(e.getLocalizedMessage());
 			e.printStackTrace(System.err);
