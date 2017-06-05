@@ -16,74 +16,39 @@
  */
 package eu.griend.pmph.service;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.UUID;
 
 import javax.annotation.PreDestroy;
 
 import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttClientPersistence;
 import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
-import org.eclipse.paho.client.mqttv3.MqttSecurityException;
-
+import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PamphletService implements CommandLineRunner {
+public class PamphletService {
 	private final static Logger LOGGER = LoggerFactory.getLogger(PamphletService.class);
 	private final static String BROKER = "tcp://rpia0009725:1883";
-	private final static String START = "start";
-	private final static String ALIVE = "alive";
-	private final static String STOP = "stop";
-	
-	private String topic = null;
 
-	private MqttClient client = null;
+	private MqttClient mqttClient = null;
 
-	public PamphletService() throws MqttException, UnknownHostException {
-		LOGGER.debug("StartService() - start");
+	public MqttClient getMqttClient() throws MqttException {
+		if (this.mqttClient == null) {
+			LOGGER.trace("getMqttClient() - start");
 
-		this.topic = "pmph/" + InetAddress.getLocalHost().getHostName() + "/state";
-		
-		LOGGER.debug("StartService() - stop");
-	}
+			String tmpdir = System.getProperty("java.io.tmpdir");
+			MqttClientPersistence persistence = new MqttDefaultFilePersistence(tmpdir);
+			this.mqttClient = new MqttClient(BROKER, UUID.randomUUID().toString(), persistence);
+			this.mqttClient.connect();
 
-	/**
-	 * Run at start
-	 * 
-	 * @throws MqttException
-	 * @throws MqttSecurityException
-	 */
-	@Override
-	public void run(String... args) throws MqttSecurityException, MqttException {
-		LOGGER.debug("run() - start");
-
-		client = new MqttClient(BROKER, UUID.randomUUID().toString());
-		client.connect();
-
-		MqttMessage message = new MqttMessage(START.getBytes());
-		client.publish(this.topic, message);
-
-		LOGGER.debug("run() - stop");
-	}
-
-	@Scheduled(fixedRate = 60000)
-	public void alive() throws MqttSecurityException, MqttException {
-		LOGGER.debug("alive() - start");
-
-		if (client != null) {
-			MqttMessage message = new MqttMessage(ALIVE.getBytes());
-			client.publish(this.topic, message);
+			LOGGER.trace("getMqttClient() - stop");
 		}
 
-		LOGGER.debug("alive() - stop");
+		return this.mqttClient;
 	}
 
 	/**
@@ -93,14 +58,14 @@ public class PamphletService implements CommandLineRunner {
 	 * @throws MqttPersistenceException
 	 */
 	@PreDestroy
-	public void stop() throws MqttPersistenceException, MqttException {
-		LOGGER.debug("stop() - start");
+	public void stop() throws MqttException {
+		LOGGER.trace("stop() - start");
 
-		MqttMessage message = new MqttMessage(STOP.getBytes());
-		client.publish(this.topic, message);
-		client.disconnect();
+		if (this.mqttClient != null) {
+			this.mqttClient.disconnect();
+			this.mqttClient.close();
+		}
 
-		LOGGER.debug("stop() - stop");
+		LOGGER.trace("stop() - stop");
 	}
-
 }
