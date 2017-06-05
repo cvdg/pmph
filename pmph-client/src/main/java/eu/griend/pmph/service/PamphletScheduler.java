@@ -28,11 +28,10 @@ import javax.annotation.PreDestroy;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
-import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -46,80 +45,109 @@ public class PamphletScheduler {
 	private final static String START_TOPIC = "pmph/{0}/start";
 	private final static String ALIVE_TOPIC = "pmph/{0}/alive";
 	private final static String STOP_TOPIC = "pmph/{0}/stop";
-	
+
 	@Autowired
 	private PamphletService pamphletService = null;
 
 	private boolean started = false;
-	private long counter = 0L;
 
+	private long counter = 0L;
 
 	/**
 	 * Send an alive message every 6 minutes.
 	 * 
-	 * @throws MqttSecurityException
+	 * First time sends a start message.
+	 * 
 	 * @throws MqttException
-	 * @throws UnknownHostException 
+	 * @throws UnknownHostException
 	 */
 	@Scheduled(fixedRate = 600000)
-	public void alive() throws MqttException, UnknownHostException {
+	public void alive() {
 		LOGGER.trace("alive() - start");
 
-		if (!started) {
-			this.started = true;
-			String topic = MessageFormat.format(START_TOPIC, InetAddress.getLocalHost().getHostName());
-			String date = FORMAT.format(new Date());
+		try {
+			if (!started) {
+				this.started = true;
 
-			MqttClient mqttClient = this.pamphletService.getMqttClient();
-			MqttMessage start = new MqttMessage();
-			start.setQos(1);
-			start.setRetained(true);
-			start.setPayload(date.getBytes());
-			mqttClient.publish(topic, start);
+				//
+				// Set start timestamp
+				//
+				String topic = MessageFormat.format(START_TOPIC, InetAddress.getLocalHost().getHostName());
+				String timestamp = FORMAT.format(new Date());
 
-			topic = MessageFormat.format(STOP_TOPIC, InetAddress.getLocalHost().getHostName());
-			
-			MqttMessage stop = new MqttMessage();
-			stop.setQos(1);
-			stop.setRetained(true);
-			stop.clearPayload();
-			mqttClient.publish(topic, stop);
-		} else {
-			String topic = MessageFormat.format(ALIVE_TOPIC, InetAddress.getLocalHost().getHostName());
-			
-			MqttClient mqttClient = this.pamphletService.getMqttClient();
-			MqttMessage alive = new MqttMessage();
-			alive.setQos(0);
-			alive.setRetained(false);
-			alive.setPayload(Long.toString(++this.counter).getBytes());
-			mqttClient.publish(topic, alive);
+				MqttClient mqttClient = this.pamphletService.getMqttClient();
+				MqttMessage start = new MqttMessage();
+				start.setQos(1);
+				start.setRetained(true);
+				start.setPayload(timestamp.getBytes());
+				mqttClient.publish(topic, start);
+
+				//
+				// Remove stop timestamp
+				//
+				topic = MessageFormat.format(STOP_TOPIC, InetAddress.getLocalHost().getHostName());
+
+				MqttMessage stop = new MqttMessage();
+				stop.setQos(1);
+				stop.setRetained(true);
+				stop.clearPayload();
+				mqttClient.publish(topic, stop);
+
+				LOGGER.info("message start - {}", timestamp);
+			} else {
+				//
+				// Set alive counter
+				//
+				String topic = MessageFormat.format(ALIVE_TOPIC, InetAddress.getLocalHost().getHostName());
+
+				MqttClient mqttClient = this.pamphletService.getMqttClient();
+				MqttMessage alive = new MqttMessage();
+				alive.setQos(0);
+				alive.setRetained(false);
+				alive.setPayload(Long.toString(++this.counter).getBytes());
+				mqttClient.publish(topic, alive);
+
+				LOGGER.info("message alive - {}", this.counter);
+			}
+		} catch (UnknownHostException e) {
+			LOGGER.error(e.getLocalizedMessage(), e);
+		} catch (MqttException e) {
+			LOGGER.error(e.getLocalizedMessage(), e);
 		}
 
 		LOGGER.trace("alive() - stop");
 	}
 
-	
 	/**
 	 * Run at exit
 	 * 
 	 * @throws MqttException
-	 * @throws UnknownHostException 
-	 * @throws MqttPersistenceException
+	 * @throws UnknownHostException
 	 */
 	@PreDestroy
-	public void stop() throws MqttException, UnknownHostException {
-		LOGGER.debug("stop() - start");
+	public void stop() {
+		LOGGER.trace("stop() - start");
 
-		String topic = MessageFormat.format(STOP_TOPIC, InetAddress.getLocalHost().getHostName());
-		String date = FORMAT.format(new Date());
-		
-		MqttClient mqttClient = this.pamphletService.getMqttClient();
-		MqttMessage stop = new MqttMessage();
-		stop.setQos(1);
-		stop.setRetained(true);
-		stop.setPayload(date.getBytes());
-		mqttClient.publish(topic, stop);
+		//
+		// Set stop timestamp
+		//
+		try {
+			String topic = MessageFormat.format(STOP_TOPIC, InetAddress.getLocalHost().getHostName());
+			String timestamp = FORMAT.format(new Date());
 
-		LOGGER.debug("stop() - stop");
+			MqttClient mqttClient = this.pamphletService.getMqttClient();
+			MqttMessage stop = new MqttMessage();
+			stop.setQos(1);
+			stop.setRetained(true);
+			stop.setPayload(timestamp.getBytes());
+			mqttClient.publish(topic, stop);
+			LOGGER.info("message stop - {}", timestamp);
+		} catch (UnknownHostException e) {
+			LOGGER.error(e.getLocalizedMessage(), e);
+		} catch (MqttException e) {
+			LOGGER.error(e.getLocalizedMessage(), e);
+		}
+
+		LOGGER.trace("stop() - stop");
 	}
 }

@@ -1,0 +1,135 @@
+main INFO  pmph.PamphletClient - Starting PamphletClient on lina0017872 with PID 19437 (/home/cvdg/prj/pmph/pmph-client/target/classes started by cvdg in /home/cvdg/prj/pmph/pmph-client)
+main INFO  pmph.PamphletClient - No active profile set, falling back to default profiles: default
+main INFO  pmph.PamphletClient - Started PamphletClient in 1.079 seconds (JVM running for 6.677)
+main INFO  pmph.PamphletClient - Starting PamphletClient on lina0017872 with PID 19833 (/home/cvdg/prj/pmph/pmph-client/target/classes started by cvdg in /home/cvdg/prj/pmph/pmph-client)
+main INFO  pmph.PamphletClient - No active profile set, falling back to default profiles: default
+main INFO  pmph.PamphletClient - Started PamphletClient in 1.052 seconds (JVM running for 6.805)
+pool-2-thread-1 INFO  service.PamphletService - connect - tcp://rpia0009725:1883
+pool-2-thread-1 INFO  service.PamphletScheduler - message start - 2017-06-05 11:08:14 CEST
+2017-06-05 11:11:43,826 INFO  [main] org.springframework.boot.StartupInfoLogger (StartupInfoLogger.java:48) - Starting PamphletClient on lina0017872 with PID 19936 (/home/cvdg/prj/pmph/pmph-client/target/classes started by cvdg in /home/cvdg/prj/pmph/pmph-client)
+2017-06-05 11:11:43,829 INFO  [main] org.springframework.boot.SpringApplication (SpringApplication.java:637) - No active profile set, falling back to default profiles: default
+2017-06-05 11:11:44,642 INFO  [main] org.springframework.boot.StartupInfoLogger (StartupInfoLogger.java:57) - Started PamphletClient in 1.339 seconds (JVM running for 6.86)
+2017-06-05 11:11:44,747 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletService (PamphletService.java:48) - connect - tcp://rpia0009725:1883
+2017-06-05 11:11:44,840 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler (PamphletScheduler.java:95) - message start - 2017-06-05 11:11:44 CEST
+2017-06-05 11:13:40,254 INFO  [main] org.springframework.boot.StartupInfoLogger - Starting PamphletClient on lina0017872 with PID 20020 (/home/cvdg/prj/pmph/pmph-client/target/classes started by cvdg in /home/cvdg/prj/pmph/pmph-client)
+2017-06-05 11:13:40,257 INFO  [main] org.springframework.boot.SpringApplication - No active profile set, falling back to default profiles: default
+2017-06-05 11:13:41,020 INFO  [main] org.springframework.boot.StartupInfoLogger - Started PamphletClient in 1.26 seconds (JVM running for 6.591)
+2017-06-05 11:13:41,095 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletService - connect - tcp://rpia0009725:1883
+2017-06-05 11:13:41,184 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message start - 2017-06-05 11:13:41 CEST
+2017-06-05 11:15:11,477 INFO  [main] org.springframework.boot.StartupInfoLogger - Starting PamphletClient on lina0017872 with PID 20112 (/home/cvdg/prj/pmph/pmph-client/target/classes started by cvdg in /home/cvdg/prj/pmph/pmph-client)
+2017-06-05 11:15:11,480 INFO  [main] org.springframework.boot.SpringApplication - No active profile set, falling back to default profiles: default
+2017-06-05 11:15:12,263 INFO  [main] org.springframework.boot.StartupInfoLogger - Started PamphletClient in 1.193 seconds (JVM running for 6.481)
+2017-06-05 11:15:12,377 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletService - connect - tcp://rpia0009725:1883
+2017-06-05 11:15:12,471 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message start - 2017-06-05 11:15:12 CEST
+2017-06-05 11:15:40,907 INFO  [main] org.springframework.boot.StartupInfoLogger - Starting PamphletClient on lina0017872 with PID 20186 (/home/cvdg/prj/pmph/pmph-client/target/classes started by cvdg in /home/cvdg/prj/pmph/pmph-client)
+2017-06-05 11:15:40,912 INFO  [main] org.springframework.boot.SpringApplication - No active profile set, falling back to default profiles: default
+2017-06-05 11:15:41,827 INFO  [main] org.springframework.boot.StartupInfoLogger - Started PamphletClient in 1.472 seconds (JVM running for 9.109)
+2017-06-05 11:15:42,049 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletService - connect - tcp://rpia0009725:1883
+2017-06-05 11:15:42,148 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message start - 2017-06-05 11:15:41 CEST
+2017-06-05 11:16:59,855 INFO  [main] org.springframework.boot.StartupInfoLogger - Starting PamphletClient on lina0017872 with PID 20294 (/home/cvdg/prj/pmph/pmph-client/target/classes started by cvdg in /home/cvdg/prj/pmph/pmph-client)
+2017-06-05 11:16:59,859 INFO  [main] org.springframework.boot.SpringApplication - No active profile set, falling back to default profiles: default
+2017-06-05 11:17:00,598 INFO  [main] org.springframework.boot.StartupInfoLogger - Started PamphletClient in 1.275 seconds (JVM running for 6.644)
+2017-06-05 11:17:00,695 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletService - connect - tcp://rpia0009725:1883
+2017-06-05 11:17:00,814 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message start - 2017-06-05 11:17:00 CEST
+2017-06-05 11:17:05,594 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 1
+2017-06-05 11:17:10,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 2
+2017-06-05 11:17:15,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 3
+2017-06-05 11:17:20,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 4
+2017-06-05 11:17:25,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 5
+2017-06-05 11:17:30,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 6
+2017-06-05 11:17:35,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 7
+2017-06-05 11:17:40,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 8
+2017-06-05 11:17:45,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 9
+2017-06-05 11:17:50,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 10
+2017-06-05 11:17:55,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 11
+2017-06-05 11:18:00,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 12
+2017-06-05 11:18:05,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 13
+2017-06-05 11:18:10,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 14
+2017-06-05 11:18:15,594 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 15
+2017-06-05 11:18:20,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 16
+2017-06-05 11:18:25,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 17
+2017-06-05 11:18:30,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 18
+2017-06-05 11:18:35,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 19
+2017-06-05 11:18:40,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 20
+2017-06-05 11:18:45,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 21
+2017-06-05 11:18:50,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 22
+2017-06-05 11:18:55,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 23
+2017-06-05 11:19:00,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 24
+2017-06-05 11:19:05,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 25
+2017-06-05 11:19:10,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 26
+2017-06-05 11:19:15,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 27
+2017-06-05 11:19:20,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 28
+2017-06-05 11:19:25,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 29
+2017-06-05 11:19:30,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 30
+2017-06-05 11:19:35,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 31
+2017-06-05 11:19:40,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 32
+2017-06-05 11:19:45,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 33
+2017-06-05 11:19:50,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 34
+2017-06-05 11:19:55,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 35
+2017-06-05 11:20:00,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 36
+2017-06-05 11:20:05,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 37
+2017-06-05 11:20:10,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 38
+2017-06-05 11:20:15,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 39
+2017-06-05 11:20:20,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 40
+2017-06-05 11:20:25,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 41
+2017-06-05 11:20:30,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 42
+2017-06-05 11:20:35,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 43
+2017-06-05 11:20:40,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 44
+2017-06-05 11:20:45,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 45
+2017-06-05 11:20:50,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 46
+2017-06-05 11:20:55,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 47
+2017-06-05 11:21:00,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 48
+2017-06-05 11:21:05,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 49
+2017-06-05 11:21:10,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 50
+2017-06-05 11:21:15,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 51
+2017-06-05 11:21:20,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 52
+2017-06-05 11:21:25,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 53
+2017-06-05 11:21:30,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 54
+2017-06-05 11:21:35,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 55
+2017-06-05 11:21:40,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 56
+2017-06-05 11:21:45,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 57
+2017-06-05 11:21:50,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 58
+2017-06-05 11:21:55,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 59
+2017-06-05 11:22:00,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 60
+2017-06-05 11:22:05,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 61
+2017-06-05 11:22:10,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 62
+2017-06-05 11:22:15,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 63
+2017-06-05 11:22:20,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 64
+2017-06-05 11:22:25,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 65
+2017-06-05 11:22:30,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 66
+2017-06-05 11:22:35,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 67
+2017-06-05 11:22:40,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 68
+2017-06-05 11:22:45,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 69
+2017-06-05 11:22:50,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 70
+2017-06-05 11:22:55,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 71
+2017-06-05 11:23:00,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 72
+2017-06-05 11:23:05,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 73
+2017-06-05 11:23:10,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 74
+2017-06-05 11:23:15,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 75
+2017-06-05 11:23:20,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 76
+2017-06-05 11:23:25,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 77
+2017-06-05 11:23:30,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 78
+2017-06-05 11:23:35,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 79
+2017-06-05 11:23:40,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 80
+2017-06-05 11:23:45,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 81
+2017-06-05 11:23:50,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 82
+2017-06-05 11:23:55,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 83
+2017-06-05 11:24:00,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 84
+2017-06-05 11:24:05,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 85
+2017-06-05 11:24:10,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 86
+2017-06-05 11:24:15,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 87
+2017-06-05 11:24:20,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 88
+2017-06-05 11:24:25,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 89
+2017-06-05 11:24:30,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 90
+2017-06-05 11:24:35,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 91
+2017-06-05 11:24:40,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 92
+2017-06-05 11:24:45,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 93
+2017-06-05 11:24:50,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 94
+2017-06-05 11:24:55,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 95
+2017-06-05 11:25:00,593 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 96
+2017-06-05 11:25:10,890 INFO  [main] org.springframework.boot.StartupInfoLogger - Starting PamphletClient on lina0017872 with PID 20647 (/home/cvdg/prj/pmph/pmph-client/target/classes started by cvdg in /home/cvdg/prj/pmph/pmph-client)
+2017-06-05 11:25:10,894 INFO  [main] org.springframework.boot.SpringApplication - No active profile set, falling back to default profiles: default
+2017-06-05 11:25:11,621 INFO  [main] org.springframework.boot.StartupInfoLogger - Started PamphletClient in 1.204 seconds (JVM running for 6.5)
+2017-06-05 11:25:11,694 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletService - connect - tcp://rpia0009725:1883
+2017-06-05 11:25:11,789 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message start - 2017-06-05 11:25:11 CEST
+2017-06-05 11:25:16,614 INFO  [pool-2-thread-1] eu.griend.pmph.service.PamphletScheduler - message alive - 1

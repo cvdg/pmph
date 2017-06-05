@@ -23,7 +23,6 @@ import javax.annotation.PreDestroy;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttClientPersistence;
 import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,34 +35,45 @@ public class PamphletService {
 
 	private MqttClient mqttClient = null;
 
-	public MqttClient getMqttClient() throws MqttException {
-		if (this.mqttClient == null) {
-			LOGGER.trace("getMqttClient() - start");
+	public MqttClient getMqttClient() {
+		LOGGER.trace("getMqttClient() - start");
 
-			String tmpdir = System.getProperty("java.io.tmpdir");
-			MqttClientPersistence persistence = new MqttDefaultFilePersistence(tmpdir);
-			this.mqttClient = new MqttClient(BROKER, UUID.randomUUID().toString(), persistence);
-			this.mqttClient.connect();
+		try {
+			if (this.mqttClient == null) {
 
-			LOGGER.trace("getMqttClient() - stop");
+				String tmpdir = System.getProperty("java.io.tmpdir");
+				MqttClientPersistence persistence = new MqttDefaultFilePersistence(tmpdir);
+				this.mqttClient = new MqttClient(BROKER, UUID.randomUUID().toString(), persistence);
+				this.mqttClient.connect();
+
+				LOGGER.info("connect - {}", BROKER);
+
+			}
+		} catch (MqttException e) {
+			LOGGER.error(e.getLocalizedMessage(), e);
 		}
+
+		LOGGER.trace("getMqttClient() - stop");
 
 		return this.mqttClient;
 	}
 
 	/**
 	 * Run at exit
-	 * 
-	 * @throws MqttException
-	 * @throws MqttPersistenceException
 	 */
 	@PreDestroy
-	public void stop() throws MqttException {
+	public void stop() {
 		LOGGER.trace("stop() - start");
 
-		if (this.mqttClient != null) {
-			this.mqttClient.disconnect();
-			this.mqttClient.close();
+		try {
+			if (this.mqttClient != null) {
+				this.mqttClient.disconnect();
+				this.mqttClient.close();
+
+				LOGGER.info("disconnect - {}", BROKER);
+			}
+		} catch (MqttException e) {
+			LOGGER.error(e.getLocalizedMessage(), e);
 		}
 
 		LOGGER.trace("stop() - stop");
