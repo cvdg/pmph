@@ -20,12 +20,9 @@ package eu.griend.pmph;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
-
-import eu.griend.pmph.service.LoggerService;
 
 
 /**
@@ -37,25 +34,13 @@ import eu.griend.pmph.service.LoggerService;
 public class PamphletLogger {
 	private final static Logger LOGGER = LoggerFactory.getLogger(PamphletLogger.class);
 	
-	@Autowired
-	LoggerService startService;
-	
-	//
-	// Default constructor
-	//
-	public PamphletLogger() {
-		super();
-	}
-	
-	//
-	// Main
-	//
 	public static void main(String[] args) {
 		try {
-			SpringApplication.run(PamphletLogger.class, args);
+			SpringApplication app = new SpringApplication(PamphletLogger.class);
+			app.setBannerMode(Banner.Mode.OFF);
+			app.run(args);
 		} catch (Exception e) {
-			System.err.println(e.getLocalizedMessage());
-			e.printStackTrace(System.err);
+			LOGGER.error(e.getLocalizedMessage(), e);
 		}
 	}
 }

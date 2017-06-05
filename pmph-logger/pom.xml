@@ -5,9 +5,10 @@
 	<parent>
 		<groupId>eu.griend.pmph</groupId>
 		<artifactId>pmph-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0</version>
 	</parent>
 	<artifactId>pmph-logger</artifactId>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 	<name>pmph-logger</name>
 	<description>Demo project for Spring Boot</description>
@@ -15,6 +16,16 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

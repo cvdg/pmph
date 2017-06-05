@@ -16,52 +16,59 @@
  */
 package eu.griend.pmph.service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
-
 import javax.annotation.PreDestroy;
 
 import org.eclipse.paho.client.mqttv3.IMqttMessageListener;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LoggerService implements CommandLineRunner, IMqttMessageListener {
-	private static final DateFormat FORMAT = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss.SSS");
-	private final static String BROKER = "tcp://rpia0009725:1883";
+public class LoggerListener implements CommandLineRunner, IMqttMessageListener {
+	private final static Logger LOGGER = LoggerFactory.getLogger(LoggerListener.class);
 
-	private MqttClient mqttClient = null;
-	
+	@Autowired
+	private PamphletService pamphletService = null;
+
 	@Override
-	public void messageArrived(String topic, MqttMessage message) throws Exception {
-		StringBuilder tmp = new StringBuilder();
-		Date now = new Date();
+	public void messageArrived(String topic, MqttMessage message) {
+		LOGGER.trace("messageArrived() - start");
+
+		LOGGER.info("{} - {}", topic, message.toString());
 		
-		tmp.append(FORMAT.format(now));
-		tmp.append(" ");
-		tmp.append(topic);
-		tmp.append(" ");
-		tmp.append(message.toString());
-		
-		System.out.println(tmp.toString());
+		LOGGER.trace("messageArrived() - stop");
 	}
 
 	@Override
-	public void run(String... args) throws MqttException {
-		this.mqttClient = new MqttClient(BROKER, UUID.randomUUID().toString());
-		this.mqttClient.connect();
-		this.mqttClient.subscribe("#", this);
+	public void run(String... args) {
+		LOGGER.trace("run() - start");
+
+		try {
+			MqttClient mqttClient = this.pamphletService.getMqttClient();
+			mqttClient.subscribe("#", this);
+		} catch (MqttException e) {
+			LOGGER.error(e.getLocalizedMessage(), e);
+		}
+
+		LOGGER.trace("run() - stop");
 	}
-	
+
 	@PreDestroy
-	public void stop() throws MqttException {
-		this.mqttClient.unsubscribe("#");
-		this.mqttClient.disconnect();
-		this.mqttClient.close();
+	public void stop() {
+		LOGGER.trace("stop() - start");
+
+		try {
+			MqttClient mqttClient = this.pamphletService.getMqttClient();
+			mqttClient.unsubscribe("#");
+		} catch (MqttException e) {
+			LOGGER.error(e.getLocalizedMessage(), e);
+		}
+
+		LOGGER.trace("stop() - stop");
 	}
 }
