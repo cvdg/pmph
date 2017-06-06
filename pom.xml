@@ -21,6 +21,7 @@
 	</properties>
 	<modules>
             <module>pmph-client</module>
-            <module>pmph-logger</module>
+	    <module>pmph-logger</module>
+            <module>pmph-web</module>
 	</modules>
 </project>

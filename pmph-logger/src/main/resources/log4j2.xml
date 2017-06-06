@@ -4,8 +4,8 @@
 		<Property name="baseDir">/var/opt/pmph/log</Property>
 	</Properties>
 	<Appenders>
-		<RollingFile name="LOGFILE" fileName="${baseDir}/pmph-client.log"
-			filePattern="${baseDir}/pmph-logger-%d{yyyy-MM-dd}.log.gz">
+		<RollingFile name="LOGFILE" fileName="${baseDir}/pmph-logger.log"
+			filePattern="${baseDir}/pmph-logger-%d{yyyyMMdd}.log.gz">
 			<PatternLayout pattern="%d %-5p [%t] %C - %m%n" />
 			<Policies>
 				<TimeBasedTriggeringPolicy />
